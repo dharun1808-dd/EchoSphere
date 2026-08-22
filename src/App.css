@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    background: #151515;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    border-bottom: 1px solid #252525;
+}
+
+.navbar h2 {
+    font-size: 24px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* ================= MAIN ================= */
+
+main {
+    min-height: 100vh;
+    padding: 45px 40px 150px;
+
+    max-width: 1400px;
+    margin: auto;
+}
+
+main h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+main > p {
+    color: #aaa;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+/* ================= SONG GRID ================= */
+
+.songs {
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 25px;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1100px) {
+
+    .songs {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    main h1 {
+        font-size: 32px;
+    }
+
+}
+
+/* ================= SMALL TABLET ================= */
+
+@media (max-width: 750px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .navbar h2 {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    main {
+        padding: 30px 20px 150px;
+    }
+
+    main h1 {
+        font-size: 28px;
+    }
+
+    .songs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 500px) {
+
+    .navbar {
+        height: auto;
+        min-height: 65px;
+
+        padding: 12px 15px;
+
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .navbar h2 {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    main {
+        padding: 25px 15px 170px;
+    }
+
+    main h1 {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    main > p {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .songs {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+}
+
+/* ================= VERY SMALL MOBILE ================= */
+
+@media (max-width: 360px) {
+
+    .songs {
+        grid-template-columns: 1fr;
+    }
+
+    main h1 {
+        font-size: 22px;
+    }
+
+}
