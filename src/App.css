@@ -1,197 +1,634 @@
+/* =========================
+   GLOBAL
+========================= */
+
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: white;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0b0f;
+    color: #ffffff;
 }
 
-/* ================= NAVBAR ================= */
+#root {
+    min-height: 100vh;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
     width: 100%;
-    height: 70px;
-    background: #151515;
+    height: 72px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 40px;
+    padding: 0 48px;
+
+    background: #111116;
+    border-bottom: 1px solid #24242c;
 
     position: sticky;
     top: 0;
-    z-index: 1000;
-
-    border-bottom: 1px solid #252525;
+    z-index: 100;
 }
 
 .navbar h2 {
-    font-size: 24px;
-    white-space: nowrap;
+    margin: 0;
+    font-size: 23px;
+    font-weight: 700;
+    color: #ffffff;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 34px;
 }
 
 .nav-links a {
-    color: #ddd;
+    color: #b9b9c2;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 
-    transition: 0.2s;
+    padding: 8px 0;
+
+    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: white;
+    color: #ffffff;
 }
 
-/* ================= MAIN ================= */
+.nav-links a.active {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+/* =========================
+   MAIN
+========================= */
 
 main {
-    min-height: 100vh;
-    padding: 45px 40px 150px;
+    width: min(1400px, calc(100% - 80px));
+    margin: 0 auto;
 
-    max-width: 1400px;
-    margin: auto;
+    padding: 48px 0 120px;
 }
 
-main h1 {
-    font-size: 38px;
-    margin-bottom: 10px;
+main > h1 {
+    margin: 0 0 8px;
+
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 700;
 }
 
 main > p {
-    color: #aaa;
-    font-size: 18px;
-    margin-bottom: 35px;
+    margin: 0 0 32px;
+
+    color: #9999a5;
+    font-size: 16px;
 }
 
-/* ================= SONG GRID ================= */
+
+/* =========================
+   SONG GRID
+========================= */
 
 .songs {
+    width: 100%;
+
     display: grid;
 
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
-    gap: 25px;
+    gap: 26px;
 }
 
-/* ================= TABLET ================= */
+
+/* =========================
+   SONG CARD
+========================= */
+
+.song-card {
+    min-width: 0;
+
+    background: #15151c;
+
+    border: 1px solid #23232c;
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+
+    background: #1a1a22;
+
+    border-color: #353540;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================
+   SONG IMAGE
+========================= */
+
+.song-image {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #202027;
+}
+
+.song-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.35s ease;
+}
+
+.song-card:hover .song-image img {
+    transform: scale(1.04);
+}
+
+
+/* =========================
+   CARD PLAY BUTTON
+========================= */
+
+.card-play {
+    position: absolute;
+
+    right: 14px;
+    bottom: 14px;
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #000000;
+
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    opacity: 0;
+    transform: translateY(8px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.song-card:hover .card-play {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-play:hover {
+    background: #dddddd;
+}
+
+
+/* =========================
+   SONG INFO
+========================= */
+
+.song-info {
+    padding: 16px 17px 18px;
+}
+
+.song-info h3 {
+    margin: 0 0 6px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-info p {
+    margin: 0;
+
+    color: #9999a5;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    width: min(760px, 100%);
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 38px;
+}
+
+.search-box input {
+    flex: 1;
+
+    height: 52px;
+
+    padding: 0 18px;
+
+    border: 1px solid #30303a;
+    border-right: none;
+
+    border-radius: 10px 0 0 10px;
+
+    outline: none;
+
+    background: #15151c;
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+.search-box input::placeholder {
+    color: #777782;
+}
+
+.search-box input:focus {
+    border-color: #555562;
+}
+
+.search-box button {
+    height: 52px;
+
+    padding: 0 25px;
+
+    border: none;
+    border-radius: 0 10px 10px 0;
+
+    background: #ffffff;
+    color: #000000;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   COMPACT MUSIC PLAYER
+========================= */
+
+.player {
+    position: fixed;
+
+    left: 50%;
+    bottom: 14px;
+
+    transform: translateX(-50%);
+
+    width: min(650px, calc(100% - 30px));
+    height: 82px;
+
+    padding: 10px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    z-index: 200;
+
+    background: rgba(20, 20, 27, 0.98);
+
+    border: 1px solid #30303a;
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   PLAYER SONG
+========================= */
+
+.player-song {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 170px;
+    max-width: 210px;
+}
+
+.player-song img {
+    width: 56px;
+    height: 56px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+.player-info {
+    min-width: 0;
+}
+
+.player-info h3 {
+    margin: 0 0 4px;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-info p {
+    margin: 0;
+
+    color: #9999a5;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================
+   PLAYER CENTER
+========================= */
+
+.player-center {
+    flex: 1;
+
+    min-width: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+/* =========================
+   PLAYER CONTROLS
+========================= */
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.control-button {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+}
+
+.control-button:hover {
+    background: #292932;
+}
+
+.main-play {
+    width: 34px;
+    height: 34px;
+
+    background: #ffffff;
+    color: #000000;
+
+    border-radius: 50%;
+}
+
+.main-play:hover {
+    background: #dddddd;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 11px;
+    color: #9999a5;
+}
+
+.progress input {
+    width: 130px;
+}
+
+
+/* =========================
+   AUDIO
+========================= */
+
+.player audio {
+    display: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (max-width: 1100px) {
 
     .songs {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
     }
 
-    main h1 {
-        font-size: 32px;
+    main {
+        width: min(100% - 50px, 1000px);
     }
-
 }
 
-/* ================= SMALL TABLET ================= */
 
 @media (max-width: 750px) {
 
     .navbar {
-        padding: 0 20px;
-    }
+        height: auto;
+        min-height: 68px;
 
-    .navbar h2 {
-        font-size: 20px;
+        padding: 14px 22px;
+
+        flex-direction: column;
+        gap: 12px;
     }
 
     .nav-links {
-        gap: 15px;
-    }
-
-    .nav-links a {
-        font-size: 14px;
+        gap: 24px;
     }
 
     main {
-        padding: 30px 20px 150px;
+        width: calc(100% - 32px);
+
+        padding-top: 32px;
+        padding-bottom: 110px;
     }
 
-    main h1 {
+    main > h1 {
         font-size: 28px;
     }
 
     .songs {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
     }
 
-}
+    .player {
+        width: calc(100% - 20px);
+        height: 74px;
 
-/* ================= MOBILE ================= */
+        padding: 8px 12px;
 
-@media (max-width: 500px) {
-
-    .navbar {
-        height: auto;
-        min-height: 65px;
-
-        padding: 12px 15px;
-
-        flex-direction: column;
         gap: 10px;
     }
 
-    .navbar h2 {
-        font-size: 20px;
+    .player-song {
+        min-width: 130px;
     }
 
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        gap: 25px;
+    .player-song img {
+        width: 48px;
+        height: 48px;
     }
 
-    .nav-links a {
-        font-size: 14px;
+    .player-center {
+        min-width: 0;
     }
 
-    main {
-        padding: 25px 15px 170px;
+    .progress {
+        display: none;
     }
-
-    main h1 {
-        font-size: 24px;
-        line-height: 1.3;
-    }
-
-    main > p {
-        font-size: 15px;
-        margin-bottom: 25px;
-    }
-
-    .songs {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
 }
 
-/* ================= VERY SMALL MOBILE ================= */
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
 
     .songs {
         grid-template-columns: 1fr;
     }
 
-    main h1 {
-        font-size: 22px;
+    .search-box {
+        flex-direction: column;
+        gap: 10px;
     }
 
+    .search-box input {
+        width: 100%;
+
+        border-right: 1px solid #30303a;
+        border-radius: 10px;
+    }
+
+    .search-box button {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .player {
+        width: calc(100% - 16px);
+        height: 68px;
+
+        bottom: 8px;
+    }
+
+    .player-song {
+        min-width: 0;
+        max-width: 145px;
+    }
+
+    .player-song img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .player-info h3 {
+        font-size: 12px;
+    }
+
+    .player-info p {
+        font-size: 10px;
+    }
 }
