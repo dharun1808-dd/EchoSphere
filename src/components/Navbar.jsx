@@ -1,18 +1,46 @@
-function Navbar(){
+function Navbar({ activePage, setActivePage }) {
 
-    return(
+    function changePage(page) {
+        setActivePage(page);
+    }
+
+    return (
         <nav className="navbar">
 
-            <h2>🎧 EchoSphere</h2>
+            <h2
+                onClick={() => changePage("home")}
+                style={{ cursor: "pointer" }}
+            >
+                🎧 EchoSphere
+            </h2>
 
             <div className="nav-links">
-                <a>Home</a>
-                <a>Search</a>
-                <a>Library</a>
+
+                <a
+                    onClick={() => changePage("home")}
+                    className={activePage === "home" ? "active" : ""}
+                >
+                    Home
+                </a>
+
+                <a
+                    onClick={() => changePage("search")}
+                    className={activePage === "search" ? "active" : ""}
+                >
+                    Search
+                </a>
+
+                <a
+                    onClick={() => changePage("library")}
+                    className={activePage === "library" ? "active" : ""}
+                >
+                    Library
+                </a>
+
             </div>
 
         </nav>
-    )
+    );
 }
 
 export default Navbar;
