@@ -90,40 +90,101 @@ function App() {
 
             <main>
 
-                <h1>
-                    Welcome to EchoSphere
-                </h1>
+                {activePage === "home" && (
 
-                <p>
-                    Our Sound.
-                </p>
+                    <>
+                        <h1>
+                            Welcome to EchoSphere
+                        </h1>
+
+                        <p>
+                            Our Sound.
+                        </p>
+
+                        <div className="songs">
+
+                            {songs.map((song, index) => (
+
+                                <SongCard
+
+                                    key={index}
+
+                                    title={song.title}
+
+                                    artist={song.artist}
+
+                                    image={song.image}
+
+                                    songFile={song.file}
+
+                                    setCurrentSong={() =>
+                                        selectSong(index)
+                                    }
+
+                                />
+
+                            ))}
+
+                        </div>
+                    </>
+
+                )}
 
 
-                <div className="songs">
+                {activePage === "search" && (
 
-                    {
-                        songs.map((song, index) => (
+                    <>
+                        <h1>
+                            Search
+                        </h1>
 
-                            <SongCard
+                        <p>
+                            Search your favorite music.
+                        </p>
+                    </>
 
-                                key={index}
+                )}
 
-                                title={song.title}
 
-                                artist={song.artist}
+                {activePage === "library" && (
 
-                                image={song.image}
+                    <>
+                        <h1>
+                            Your Library
+                        </h1>
 
-                                songFile={song.file}
+                        <p>
+                            Your local music collection.
+                        </p>
 
-                                setCurrentSong={() => selectSong(index)}
+                        <div className="songs">
 
-                            />
+                            {songs.map((song, index) => (
 
-                        ))
-                    }
+                                <SongCard
 
-                </div>
+                                    key={index}
+
+                                    title={song.title}
+
+                                    artist={song.artist}
+
+                                    image={song.image}
+
+                                    songFile={song.file}
+
+                                    setCurrentSong={() =>
+                                        selectSong(index)
+                                    }
+
+                                />
+
+                            ))}
+
+                        </div>
+                    </>
+
+                )}
 
 
                 <Player
