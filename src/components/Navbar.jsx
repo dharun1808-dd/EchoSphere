@@ -17,21 +17,33 @@ function Navbar({ activePage, setActivePage }) {
             <div className="nav-links">
 
                 <a
-                    onClick={() => changePage("home")}
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        changePage("home");
+                    }}
                     className={activePage === "home" ? "active" : ""}
                 >
                     Home
                 </a>
 
                 <a
-                    onClick={() => changePage("search")}
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        changePage("search");
+                    }}
                     className={activePage === "search" ? "active" : ""}
                 >
                     Search
                 </a>
 
                 <a
-                    onClick={() => changePage("library")}
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        changePage("library");
+                    }}
                     className={activePage === "library" ? "active" : ""}
                 >
                     Library
