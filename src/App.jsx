@@ -49,6 +49,8 @@ function App() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const [activePage, setActivePage] = useState("home");
+
 
     const currentSong = songs[currentIndex];
 
@@ -80,17 +82,20 @@ function App() {
 
         <>
 
-            <Navbar />
+            <Navbar
+                activePage={activePage}
+                setActivePage={setActivePage}
+            />
 
 
             <main>
 
                 <h1>
-                    Welcome to EchoSphere 🎵
+                    Welcome to EchoSphere
                 </h1>
 
                 <p>
-                    Your Music Universe
+                    Our Sound.
                 </p>
 
 
